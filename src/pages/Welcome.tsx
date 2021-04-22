@@ -1,8 +1,15 @@
 import React from 'react'
-import { SafeAreaView, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { 
+  SafeAreaView, 
+  Image, 
+  Text, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Dimensions 
+} from "react-native";
+import { Feather } from '@expo/vector-icons'
 
 import wateringImg from '../assets/watering.png'
-import { Button } from '../components/Button';
 import colors from '../styles/colors';
 
 export function Welcome() {
@@ -14,14 +21,23 @@ export function Welcome() {
         forma fácil
       </Text>
 
-      <Image source={wateringImg} style={styles.image}/>
+      <Image 
+        source={wateringImg} 
+        style={styles.image}
+        resizeMode='contain'
+      />
 
       <Text  style={styles.subtitle}>
         Não esqueça mais de regar suas plantas. 
         Nós cuidamos de lembrar você sempre que precisar.
       </Text>
 
-      <Button text='>'/>
+      <TouchableOpacity 
+        activeOpacity={0.7} 
+        style={styles.button}
+      >
+        <Feather name='chevron-right' style={styles.buttonIcon} />
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }
@@ -30,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   title: {
     fontSize: 32,
@@ -41,8 +57,7 @@ const styles = StyleSheet.create({
     marginTop: 38
   },
   image: {
-    width: 292,
-    height: 284
+    height: Dimensions.get('window').width * 0.7
   },
   subtitle: {
     textAlign: 'center',
@@ -50,5 +65,18 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     paddingHorizontal: 20,
     color: colors.heading
-  }  
+  },
+  button: {
+    backgroundColor: colors.green,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    marginBottom: 10,
+    height: 56,
+    width: 56
+  },
+  buttonIcon: {
+    color: colors.white,
+    fontSize: 24
+  },  
 })
