@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
 import { 
   KeyboardAvoidingView,
@@ -16,6 +17,8 @@ import fonts from '../styles/fonts'
 
 
 export function UserIdentification() {
+  const navigation = useNavigation()
+
   const [isFocused, setIsFocused] = useState(false)
   const [isFilled, setIsFilled] = useState(false)
   const [name, setName] = useState('')
@@ -33,6 +36,11 @@ export function UserIdentification() {
   function handleInputChange(value: string) {
     setIsFilled(!!value)
     setName(value)
+  }
+
+
+  function handleSubmit() {
+    navigation.navigate('Confirmation')
   }
 
   return (
@@ -63,7 +71,7 @@ export function UserIdentification() {
             />
 
             <View style={styles.footer}>
-              <Button />
+              <Button onPress={handleSubmit} />
             </View>
           </View>
         </View>
