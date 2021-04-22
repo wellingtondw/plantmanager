@@ -26,8 +26,6 @@ export function Confirmation() {
           <Button />
         </View>
       </View>
-
-
     </SafeAreaView>
   ) 
 }
