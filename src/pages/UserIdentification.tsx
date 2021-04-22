@@ -71,7 +71,7 @@ export function UserIdentification() {
             />
 
             <View style={styles.footer}>
-              <Button onPress={handleSubmit} />
+              <Button title='Confirmar' onPress={handleSubmit} />
             </View>
           </View>
         </View>

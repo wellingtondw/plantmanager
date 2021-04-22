@@ -3,13 +3,15 @@ import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
 
-type ButtonProps = TouchableOpacityProps
+type ButtonProps = {
+  title: string
+} & TouchableOpacityProps
 
-export function Button({ ...rest }: ButtonProps) {
+export function Button({ title, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity style={styles.container} {...rest}>
       <Text style={styles.text}>
-        Confirmar
+        {title}
       </Text>
     </TouchableOpacity>
   )
