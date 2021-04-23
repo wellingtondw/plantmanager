@@ -4,7 +4,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView, 
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -16,7 +16,6 @@ import { Button } from '../components/Button'
 
 import colors from '../styles/colors'
 import fonts from '../styles/fonts'
-
 
 export function UserIdentification() {
   const navigation = useNavigation()
@@ -48,37 +47,37 @@ export function UserIdentification() {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.content}>
-            <View style={styles.form}>
-              <View style={styles.header}>
-                <Text style={styles.emoji}>
-                  {isFilled ? '😊' : '😃'}
-                </Text>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.form}>
+                <View style={styles.header}>
+                  <Text style={styles.emoji}>
+                    {isFilled ? '😊' : '😃'}
+                  </Text>
 
-                <Text style={styles.title}>
-                  Como podemos {'\n'}
-                  chamar você?
-                </Text>
+                  <Text style={styles.title}>
+                    Como podemos {'\n'}
+                    chamar você?
+                  </Text>
+                </View>
+
+                <TextInput 
+                  style={[
+                    styles.input,
+                    (isFocused || isFilled) && { borderColor: colors.green }
+                  ]} 
+                  placeholder='Digite um nome'
+                  onBlur={HandleInputBlur}
+                  onFocus={handleInputFocus}
+                  onChangeText={handleInputChange}            
+                />
+
+                <View style={styles.footer}>
+                  <Button title='Confirmar' onPress={handleSubmit} />
+                </View>
               </View>
-
-              <TextInput 
-                style={[
-                  styles.input,
-                  (isFocused || isFilled) && { borderColor: colors.green }
-                ]} 
-                placeholder='Digite um nome'
-                onBlur={HandleInputBlur}
-                onFocus={handleInputFocus}
-                onChangeText={handleInputChange}            
-              />
-
-              <View style={styles.footer}>
-                <Button title='Confirmar' onPress={handleSubmit} />
-              </View>
-            </View>
+            </TouchableWithoutFeedback>
           </View>
-        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
@@ -89,17 +88,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: '100%'
+    width: '100%',
   },
   content: {
     flex: 1,
     width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   form: {
+    height: '100%',
     justifyContent: 'center',
     paddingHorizontal: 54,
-    alignItems: 'center',
+    alignItems: 'center'
   }, 
   header: {
     textAlign: 'center',
